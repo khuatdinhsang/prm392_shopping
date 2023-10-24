@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "486826279138",
+    "firebase_url": "https://prm392-shopping-default-rtdb.firebaseio.com",
+    "project_id": "prm392-shopping",
+    "storage_bucket": "prm392-shopping.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:486826279138:android:29442bb3e59cf934d55ebb",
+        "android_client_info": {
+          "package_name": "com.example.shoping_prm392"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCloAiNUtbs7_ezRc7jo8oE4cg3lbuRB0Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
