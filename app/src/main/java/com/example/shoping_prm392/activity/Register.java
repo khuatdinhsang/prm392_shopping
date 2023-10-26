@@ -53,8 +53,6 @@ public class Register extends AppCompatActivity {
     }
 
     private void registerAccount(View view) {
-        Log.i("sang","asd");
-
         String email = edtEmail.getText().toString().trim();
         String password = edtPassword.getText().toString().trim();
         String confirmPassword = edtConfirmPassword.getText().toString().trim();
@@ -78,6 +76,7 @@ public class Register extends AppCompatActivity {
             return ;
         }
         Account account = new Account(email, password);
+        account.setImage("https://m.media-amazon.com/images/M/MV5BZWQ5YTFhZDAtMTg3Yi00NzIzLWIyY2EtNDQ2YWNjOWJkZWQxXkEyXkFqcGdeQXVyMjQ2OTU4Mjg@._V1_.jpg");
         String pathObject = String.valueOf(account.getId());
         DatabaseReference myRef = firebaseDatabase.getReference(TableName.ACCOUNT_TABLE);
         myRef.child(pathObject).setValue(account, new DatabaseReference.CompletionListener() {

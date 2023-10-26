@@ -16,15 +16,17 @@ import com.example.shoping_prm392.R;
 import com.example.shoping_prm392.model.Account;
 import com.example.shoping_prm392.utils.Utils;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Login extends AppCompatActivity {
+public class Login extends AppCompatActivity  {
     private EditText edtEmail;
     private EditText edtPassword;
     private Button btnRegister;
     private TextView textRegister;
     private List<Account> listAccount;
     private Utils utils= new Utils();
+    private Account currentAccount;
     private void bindingView(){
         edtEmail=findViewById(R.id.login_edtEmail);
         edtPassword=findViewById(R.id.login_edtPassword);
@@ -47,12 +49,14 @@ public class Login extends AppCompatActivity {
         for(int i=0; i< listAccount.size();i++){
             if(listAccount.get(i).getEmail().equals(email) && listAccount.get(i).getPassword().equals(password)){
                 check=true;
+               currentAccount=listAccount.get(i);
             }
         }
-        Log.i("che",String.valueOf(check));
         if(check){
             Toast.makeText(Login.this, "Login successfully", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, MainActivity.class);
+            Log.i("ac",currentAccount.toString());
+            intent.putExtra("currentAccount", currentAccount);
             startActivity(intent);
         } else{
             Toast.makeText(Login.this, "Wrong email or password!", Toast.LENGTH_SHORT).show();
@@ -64,6 +68,7 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         listAccount= utils.getListAccount();
+
         bindingView();
         bindingAction();
     }
