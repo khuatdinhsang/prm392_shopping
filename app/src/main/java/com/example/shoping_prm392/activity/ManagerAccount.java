@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.shoping_prm392.R;
@@ -34,19 +35,12 @@ public class ManagerAccount extends AppCompatActivity {
         rcvListAccount = findViewById(R.id.mngAccount_listAccount);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         rcvListAccount.setLayoutManager(linearLayoutManager);
-        // phan cach giua cac item
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this,
-                DividerItemDecoration.VERTICAL);
-        rcvListAccount.addItemDecoration(dividerItemDecoration);
-
         accountAdapter = new AccountAdapter(listAccount);
         rcvListAccount.setAdapter(accountAdapter);
     }
-
     private void bindingAction() {
 
     }
-
     private void getListAccountFireBase() {
         DatabaseReference myRef = firebaseDatabase.getReference(TableName.ACCOUNT_TABLE);
         myRef.addValueEventListener(new ValueEventListener() {

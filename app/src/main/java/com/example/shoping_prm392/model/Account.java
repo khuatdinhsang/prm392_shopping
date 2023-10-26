@@ -2,14 +2,17 @@ package com.example.shoping_prm392.model;
 
 import androidx.annotation.NonNull;
 
+import java.io.Serializable;
 import java.util.UUID;
 
-public class Account {
+public class Account  implements Serializable {
     private String id;
     private String email;
     private String password;
 
     private String role;
+
+    private String image;
     public Account() {
     }
 
@@ -26,6 +29,14 @@ public class Account {
         this.email = email;
         this.password = password;
         this.role="user";
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public String getId() {
@@ -52,13 +63,14 @@ public class Account {
         this.password = password;
     }
 
-    @NonNull
     @Override
     public String toString() {
         return "Account{" +
                 "id='" + id + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
+                ", role='" + role + '\'' +
+                ", image='" + image + '\'' +
                 '}';
     }
 }

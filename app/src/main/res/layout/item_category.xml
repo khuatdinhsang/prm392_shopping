@@ -10,12 +10,13 @@
     >
 
     <TextView
-        android:id="@+id/itemAccount_itemEmail"
+        android:id="@+id/itemCategory_itemName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
-    <TextView
-        android:id="@+id/itemAccount_itemPassword"
+    <ImageView
+        android:id="@+id/itemCategory_itemImage"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:contentDescription="image" />
 
 </LinearLayout>

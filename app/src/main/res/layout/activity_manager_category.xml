@@ -4,14 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.ManagerAccount">
-
+    tools:context=".activity.ManagerCategory">
     <TextView
         android:id="@+id/textView2"
         android:layout_width="326dp"
         android:layout_height="81dp"
         android:layout_marginTop="120dp"
-        android:text="@string/managerAccount"
+        android:text="@string/mangerCategory"
         android:textSize="40sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -34,7 +33,7 @@
         app:layout_constraintGuide_begin="20dp" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/mngAccount_listAccount"
+        android:id="@+id/mngCategory_listCategory"
         android:layout_width="372dp"
         android:layout_height="219dp"
         app:layout_constraintBottom_toBottomOf="parent"

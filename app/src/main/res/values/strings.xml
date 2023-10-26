@@ -22,7 +22,8 @@
     <string name="confirm_password">Confirm Password</string>
     <string name="register">Register</string>
     <string name="managerAccount">ManagerAccount</string>
-
+    <string name="mangerCategory">ManagerCategory</string>
+    <string name="mangerProduct">ManagerProduct</string>
 
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
