@@ -103,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
         bindingView();
 
 
+
         listSlide = getListSlide();
         SlideAdapter adapter = new SlideAdapter(listSlide);
         viewPager.setAdapter(adapter);
