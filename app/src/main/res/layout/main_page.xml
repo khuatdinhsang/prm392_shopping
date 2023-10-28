@@ -7,6 +7,24 @@
     android:id="@+id/main_page"
     >
 
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+    </FrameLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="409dp"
+        android:layout_height="70dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:itemBackground="#fff"
+        app:menu="@menu/menu" />
+
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="571dp"
@@ -16,7 +34,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.44"
         app:srcCompat="@drawable/banner"
         tools:ignore="VectorDrawableCompat" />
 
@@ -60,8 +78,8 @@
         android:id="@+id/viewAll"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="380dp"
-        android:layout_marginBottom="80dp"
+        android:layout_marginStart="328dp"
+        android:layout_marginBottom="88dp"
         android:text="View All"
         android:textColor="#221E1E"
         android:textSize="18dp"
