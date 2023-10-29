@@ -2,11 +2,13 @@ package com.example.shoping_prm392;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.view.Menu;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.shoping_prm392.adapter.SlideAdapter;
@@ -26,6 +28,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.example.shoping_prm392.databinding.ActivityMainBinding;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
     private Handler handler = new Handler();
     private TextView navbarEmail;
     private TextView navbarRole;
+//    private Button logout ;
     private Runnable runnable = new Runnable() {
         @Override
         public void run() {
@@ -64,7 +68,6 @@ public class MainActivity extends AppCompatActivity {
         navbarRole = nav_draw.getHeaderView(0).findViewById(R.id.navbar_role);
         navbarEmail = nav_draw.getHeaderView(0).findViewById(R.id.navbar_email);
     }
-
     private List<Slide> getListSlide() {
         List<Slide> list = new ArrayList<>();
         list.add(new Slide(R.drawable.clothes_slide));
@@ -93,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
+                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow, R.id.nav_logout)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
@@ -101,7 +104,6 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
 
         bindingView();
-
 
         listSlide = getListSlide();
         SlideAdapter adapter = new SlideAdapter(listSlide);
@@ -126,8 +128,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         currentAccount = getCurrentAccount();
-        navbarRole.setText(currentAccount.getRole());
-        navbarEmail.setText(currentAccount.getEmail());
     }
 
     @Override
@@ -157,11 +157,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private Account getCurrentAccount() {
-        Intent intent = getIntent();
-        Account currentAccount = (Account) intent.getSerializableExtra("currentAccount");
-        Log.i("ac", currentAccount.toString());
-        navbarEmail.setText(currentAccount.getEmail());
-        navbarRole.setText(currentAccount.getRole());
+//        Intent intent = getIntent();
+//        Account currentAccount = (Account) intent.getSerializableExtra("currentAccount");
+        SharedPreferences sharedPreferences = getSharedPreferences("Account", MODE_PRIVATE);
+        String accountJson = sharedPreferences.getString("currentAccount","");
+        Account currentAccount =null;
+        if (!accountJson.isEmpty()) {
+            Gson gson = new Gson();
+             currentAccount = gson.fromJson(accountJson, Account.class);
+            navbarEmail.setText(currentAccount.getEmail());
+            navbarRole.setText(currentAccount.getRole());
+        }
+
         return currentAccount;
     }
 

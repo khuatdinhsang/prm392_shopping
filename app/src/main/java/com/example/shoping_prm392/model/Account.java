@@ -13,12 +13,15 @@ public class Account  implements Serializable {
     private String role;
 
     private String image;
+    private boolean isLoggin ;
     public Account() {
     }
 
     public String getRole() {
         return role;
     }
+
+
 
     public void setRole(String role) {
         this.role = role;
@@ -29,6 +32,7 @@ public class Account  implements Serializable {
         this.email = email;
         this.password = password;
         this.role="user";
+        this.isLoggin=false;
     }
 
     public String getImage() {
@@ -55,6 +59,14 @@ public class Account  implements Serializable {
         this.email = email;
     }
 
+    public boolean isLoggin() {
+        return isLoggin;
+    }
+
+    public void setLoggin(boolean loggin) {
+        isLoggin = loggin;
+    }
+
     public String getPassword() {
         return password;
     }
@@ -71,6 +83,8 @@ public class Account  implements Serializable {
                 ", password='" + password + '\'' +
                 ", role='" + role + '\'' +
                 ", image='" + image + '\'' +
+                ", isLoggin=" + isLoggin +
                 '}';
     }
+
 }
