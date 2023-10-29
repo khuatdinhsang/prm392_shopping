@@ -19,7 +19,7 @@
             android:name=".activity.ManagerCategory"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.Login"
             android:exported="false" />
         <activity
             android:name=".activity.Register"
@@ -28,7 +28,7 @@
             android:name=".activity.ManagerAccount"
             android:exported="false" /> <!-- MainActivity ManagerAccount  .activity.ManagerAccount -->
         <activity
-            android:name=".activity.Login"
+            android:name=".MainActivity"
             android:exported="true"
             android:theme="@style/Theme.Shoping_prm392.NoActionBar">
             <intent-filter>

@@ -1,8 +1,11 @@
 package com.example.shoping_prm392.activity;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,11 +16,17 @@ import android.widget.Toast;
 
 import com.example.shoping_prm392.MainActivity;
 import com.example.shoping_prm392.R;
+import com.example.shoping_prm392.common.TableName;
 import com.example.shoping_prm392.model.Account;
 import com.example.shoping_prm392.utils.Utils;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.gson.Gson;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 
 public class Login extends AppCompatActivity  {
     private EditText edtEmail;
@@ -27,11 +36,13 @@ public class Login extends AppCompatActivity  {
     private List<Account> listAccount;
     private Utils utils= new Utils();
     private Account currentAccount;
+    private FirebaseDatabase firebaseDatabase;
     private void bindingView(){
         edtEmail=findViewById(R.id.login_edtEmail);
         edtPassword=findViewById(R.id.login_edtPassword);
         btnRegister= findViewById(R.id.login_btnLogin);
         textRegister= findViewById(R.id.login_textRegister);
+        firebaseDatabase = FirebaseDatabase.getInstance();
     }
     private void bindingAction(){
         btnRegister.setOnClickListener(this::loginAccount);
@@ -53,10 +64,19 @@ public class Login extends AppCompatActivity  {
             }
         }
         if(check){
+             currentAccount.setLoggin(true);
+            DatabaseReference myRef = firebaseDatabase.getReference(TableName.ACCOUNT_TABLE);
+            myRef.child(currentAccount.getId()).setValue(currentAccount);
+            SharedPreferences sharedPreferences = getSharedPreferences("Account",MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            Gson gson = new Gson();
+            String userJson = gson.toJson(currentAccount);
+            editor.putString("currentAccount",userJson);
+            editor.apply();
+
             Toast.makeText(Login.this, "Login successfully", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, MainActivity.class);
-            Log.i("ac",currentAccount.toString());
-            intent.putExtra("currentAccount", currentAccount);
+//            intent.putExtra("currentAccount", currentAccount);
             startActivity(intent);
         } else{
             Toast.makeText(Login.this, "Wrong email or password!", Toast.LENGTH_SHORT).show();
@@ -68,7 +88,6 @@ public class Login extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         listAccount= utils.getListAccount();
-
         bindingView();
         bindingAction();
     }
